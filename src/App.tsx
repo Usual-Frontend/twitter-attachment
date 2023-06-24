@@ -18,7 +18,8 @@ import routerBindings, {
   NavigateToResource,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
-import { dataProvider, liveProvider } from "@refinedev/supabase";
+import { liveProvider } from "@refinedev/supabase";
+import { dataProvider } from "./data-provider";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
@@ -26,12 +27,7 @@ import { AppIcon } from "./components/app-icon";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { Header } from "./components/header";
 import { ColorModeContextProvider } from "./contexts/color-mode";
-import {
-  FileCreate,
-  FileEdit,
-  FileList,
-  FileShow,
-} from "./pages/files";
+
 import {
   BlogPostCreate,
   BlogPostEdit,
@@ -44,6 +40,7 @@ import {
   CategoryList,
   CategoryShow,
 } from "./pages/categories";
+import { FilesCreate, FilesEdit, FilesList, FilesShow } from "./pages/files";
 import { supabaseClient } from "./utility";
 
 function App() {
@@ -131,10 +128,8 @@ function App() {
                     element={<NavigateToResource resource="files" />}
                   />
                   <Route path="/files">
-                    <Route index element={<BlogPostList />} />
-                    <Route path="create" element={<BlogPostCreate />} />
-                    <Route path="edit/:id" element={<BlogPostEdit />} />
-                    <Route path="show/:id" element={<BlogPostShow />} />
+                    <Route index element={<FilesList />} />
+                    <Route path="create" element={<FilesCreate />} />
                   </Route>
                   <Route path="/blog-posts">
                     <Route index element={<BlogPostList />} />
